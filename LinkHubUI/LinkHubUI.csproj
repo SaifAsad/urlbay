@@ -121,7 +121,15 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ApproveURLsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ListCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ListUserController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
+    <Compile Include="Areas\Common\Controllers\BrowseURLsController.cs" />
+    <Compile Include="Areas\Common\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Security\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Security\Controllers\RegisterController.cs" />
     <Compile Include="Areas\Security\SecurityAreaRegistration.cs" />
     <Compile Include="Areas\User\Controllers\URLController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
@@ -150,14 +158,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\ApproveURLs\" />
+    <Folder Include="Areas\Admin\Views\Category\" />
+    <Folder Include="Areas\Admin\Views\ListCategory\" />
+    <Folder Include="Areas\Admin\Views\ListUser\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
+    <Folder Include="Areas\Common\Views\BrowseURLs\" />
+    <Folder Include="Areas\Common\Views\Home\" />
     <Folder Include="Areas\Common\Views\Shared\" />
-    <Folder Include="Areas\Security\Controllers\" />
     <Folder Include="Areas\Security\Models\" />
+    <Folder Include="Areas\Security\Views\Login\" />
+    <Folder Include="Areas\Security\Views\Register\" />
     <Folder Include="Areas\Security\Views\Shared\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Controllers\" />

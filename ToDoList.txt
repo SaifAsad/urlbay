@@ -11,10 +11,12 @@ List of Tasks:
 5.  CREATE ALL CONTROLLERS IN RESPECTIVE AREAS
 6. add default index views
 7. add bootstrap
-8. create Browser URL view
-9. create Common Layout
+8. create Browser URL view  - inprogress
+9. create Common Layout - completed
 10. create DAL
    -add UrlDB
 11. create BLL
     - add UrlBs
 
+
+see 10 video for a complete list

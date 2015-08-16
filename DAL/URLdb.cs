@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    class URLdb
+    public class URLdb
     {
         private LinkHubDBEntities db;
 
@@ -18,7 +18,7 @@ namespace DAL
             db = new LinkHubDBEntities();
         }
 
-        IEnumerable<tbl_Url> GetAll()
+        public IEnumerable<tbl_Url> GetAll()
         {
             return db.tbl_Url.ToList();
         }

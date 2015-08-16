@@ -13,8 +13,8 @@ List of Tasks:
 7. add bootstrap
 8. create Browser URL view  - inprogress
 9. create Common Layout - completed
-10. create DAL
-   -add UrlDB
+10. create DAL completed
+   -add UrlDB  completed
 11. create BLL
     - add UrlBs
 

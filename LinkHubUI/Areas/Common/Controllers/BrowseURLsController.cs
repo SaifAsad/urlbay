@@ -19,7 +19,7 @@ namespace LinkHubUI.Areas.Common.Controllers
         // GET: Common/BrowseURLs
         public ActionResult Index()
         {
-            var urls = objBs.GetAll();
+            var urls = objBs.GetAll().Where(x=>x.IsApproved=="A").ToList();
             return View(urls);
         }
     }

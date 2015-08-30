@@ -13,14 +13,14 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserEmail)
+            @Html.ActionLink("UserEmail", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "UserEmail", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
+        </th>
+        <th>
+            @Html.ActionLink("Role", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Role", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Password)
         </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.Role)
-        </th>
         <th></th>
     </tr>
 
@@ -29,18 +29,35 @@
         <td>
             @Html.DisplayFor(modelItem => item.UserEmail)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Role)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
             @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
-        </td>
+        </td>*@
     </tr>
 }
 
 </table>
+
+@{
+    double TotalPage = @ViewBag.TotalPages;
+}
+
+@for (int i = 1; i <= TotalPage; i++)
+{
+
+    if (i == ViewBag.Page)
+    {
+        <li class="active"> @Html.ActionLink(i.ToString() + " ", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "UserEmail" : ViewBag.SortBy), Page = i })</li>
+    }
+    else
+    {
+        <li>
+            @Html.ActionLink(i.ToString() + " ", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "UserEmail" : ViewBag.SortBy), Page = i })
+        </li>
+    }
+
+}

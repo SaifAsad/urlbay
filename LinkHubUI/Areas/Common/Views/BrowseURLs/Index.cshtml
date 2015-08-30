@@ -13,19 +13,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("UrlTitle", "Index", new { SortOrder = (ViewBag.SortOrder == null?"Asc":(ViewBag.SortOrder == "Asc"?"Desc":"Asc")), SortBy = "Title" })
+            @Html.ActionLink("UrlTitle", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Title", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
         </th>
         <th>
-            @Html.ActionLink("Url", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Url" })
+            @Html.ActionLink("Url", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Url", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
         </th>
         <th>
-            @Html.ActionLink("UrlDesc", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "UrlDesc" })
+            @Html.ActionLink("UrlDesc", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "UrlDesc", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.IsApproved)
         </th>*@
         <th>
-            @Html.ActionLink("CategoryName", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "CategoryName" })
+            @Html.ActionLink("CategoryName", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "CategoryName", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.tbl_User.UserEmail)
@@ -33,7 +33,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.UrlTitle)
@@ -62,3 +63,22 @@
 }
 
 </table>
+@{ 
+    double TotalPage = ViewBag.TotalPages;
+}
+@{ 
+    for (int i = 1; i <= TotalPage; i++)
+    {
+        <!--these 2 statements do the same thing but the first one highlights the page number-->
+        if (i == ViewBag.Page)
+        {
+            <b>@Html.ActionLink(i.ToString() + "", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), Page = i })</b>
+        }
+        else
+        {
+            @Html.ActionLink(i.ToString() + "", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), Page = i })
+        }
+
+    }
+}
+

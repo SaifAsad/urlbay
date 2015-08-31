@@ -7,14 +7,8 @@ using BLL;
 
 namespace LinkHubUI.Areas.Admin.Controllers
 {
-    public class ListUserController : Controller
+    public class ListUserController : BaseAdminController
     {
-        private UserBs objBs;
-
-        public ListUserController()
-        {
-            objBs = new UserBs();
-        }
 
         // GET: Admin/ListUser
         public ActionResult Index(String SortOrder, String SortBy, String Page)
@@ -22,7 +16,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
             ViewBag.SortOrder = SortOrder;
             ViewBag.SortBy = SortBy;
 
-            var users = objBs.GetAll().ToList(); ;
+            var users = objBs.userBs.GetAll().ToList(); ;
 
             switch (SortBy)
             {
@@ -61,7 +55,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
                     users = users.OrderBy(x => x.UserEmail).ToList();
                     break;
             }
-            ViewBag.TotalPages = Math.Ceiling(objBs.GetAll().Count() / 10.0);
+            ViewBag.TotalPages = Math.Ceiling(objBs.userBs.GetAll().Count() / 10.0);
 
             int page = int.Parse(Page == null ? "1" : Page);
             //page number is needed in order to highlight the page

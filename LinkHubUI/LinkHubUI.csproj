@@ -106,11 +106,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\ApproveURLs\Index.cshtml" />
     <Content Include="Areas\Common\Views\BrowseURLs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ListCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ListUser\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\User\Views\URL\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ApproveURLs\Index.cshtml" />
+    <Content Include="Areas\Security\Views\Register\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -127,16 +129,20 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ApproveURLsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ListCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ListUserController.cs" />
+    <Compile Include="Areas\Common\Controllers\BaseCommonController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Common\Controllers\BrowseURLsController.cs" />
     <Compile Include="Areas\Common\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Security\Controllers\BaseSecurityController.cs" />
     <Compile Include="Areas\Security\Controllers\LoginController.cs" />
     <Compile Include="Areas\Security\Controllers\RegisterController.cs" />
     <Compile Include="Areas\Security\SecurityAreaRegistration.cs" />
+    <Compile Include="Areas\User\Controllers\BaseUserController.cs" />
     <Compile Include="Areas\User\Controllers\URLController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
@@ -153,7 +159,6 @@
     <Content Include="Areas\Security\Views\web.config" />
     <Content Include="Areas\User\Views\_ViewStart.cshtml" />
     <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\User\Views\URL\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -171,7 +176,6 @@
     <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\Security\Models\" />
     <Folder Include="Areas\Security\Views\Login\" />
-    <Folder Include="Areas\Security\Views\Register\" />
     <Folder Include="Areas\Security\Views\Shared\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Controllers\" />

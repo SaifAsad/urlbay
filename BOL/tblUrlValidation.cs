@@ -8,12 +8,19 @@ namespace BOL
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             LinkHubDBEntities db = new LinkHubDBEntities();
-            string urlValue = value.ToString();
-            //look for the value in the database, if found update count
-            int count = db.tbl_Url.Where(x => x.Url == urlValue).ToList().Count();
-            if (count != 0)
-                return new ValidationResult("Url Already Exist");
-            return ValidationResult.Success;
+            if (value != null)
+            {
+                string urlValue = value.ToString();
+                //look for the value in the database, if found update count
+                int count = db.tbl_Url.Where(x => x.Url == urlValue).ToList().Count();
+                if (count != 0)
+                    return new ValidationResult("Url Already Exist");
+                return ValidationResult.Success;
+            }
+            else
+            {
+                return new ValidationResult("Please fill in the required fields");
+            }
         }
     }
     public class tbl_UrlValidation

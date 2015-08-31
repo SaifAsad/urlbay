@@ -7,21 +7,42 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.User.Controllers
 {
-    public class URLController : Controller
+    public class URLController : BaseUserController
     {
         // GET: User/URL
         public ActionResult Index()
         {
-            LinkHubDBEntities db = new LinkHubDBEntities();
-            ViewBag.CategoryId = new SelectList(db.tbl_Category, "CategoryId", "CategoryName");
+            ViewBag.CategoryId = new SelectList(objBs.categoryBs.GetAll().ToList(), "CategoryId", "CategoryName");
+            ViewBag.UserId = new SelectList(objBs.userBs.GetAll().ToList(), "UserId", "UserEmail");
             return View();
         }
 
-        public ActionResult Create(tbl_Url obj)
+        [HttpPost]
+        public ActionResult Create(tbl_Url myUrl)
         {
-            //LinkHubDBEntities db = new LinkHubDBEntities();
-            //ViewBag.CategoryId = new SelectList(db.tbl_Category, "CategoryId", "CategoryName");
-            return View();
+            try
+            {
+                myUrl.IsApproved = "P";
+                myUrl.UserId = objBs.userBs.GetAll().Where(x => x.UserEmail == User.Identity.Name).FirstOrDefault().UserId;
+
+                if (ModelState.IsValid)
+                {
+
+                    objBs.urlBs.Insert(myUrl);
+                    TempData["Msg"] = "Created Successfully";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.CategoryId = new SelectList(objBs.categoryBs.GetAll().ToList(), "CategoryId", "CategoryName");
+                    return View("Index");
+                }
+            }
+            catch (Exception e1)
+            {
+                TempData["Msg"] = "Create Failed : " + e1.Message;
+                return RedirectToAction("Index");
+            }
         }
 
     }

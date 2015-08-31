@@ -7,14 +7,9 @@ using BLL;
 
 namespace LinkHubUI.Areas.Admin.Controllers
 {
-    public class ListCategoryController : Controller
+    public class ListCategoryController : BaseAdminController
     {
-        private CategoryBs objBs;
-
-        public ListCategoryController()
-        {
-            objBs = new CategoryBs();
-        }
+ 
 
         // GET: Admin/ListCategory
         public ActionResult Index(String SortOrder, String SortBy, String Page)
@@ -22,7 +17,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
             ViewBag.SortOrder = SortOrder;
             ViewBag.SortBy = SortBy;
 
-            var categories = objBs.GetAll().ToList();
+            var categories = objBs.categoryBs.GetAll().ToList();
 
             switch (SortBy)
             {
@@ -63,7 +58,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
                     break;
             }
 
-            ViewBag.TotalPages = Math.Ceiling(objBs.GetAll().Count() / 10.0);
+            ViewBag.TotalPages = Math.Ceiling(objBs.categoryBs.GetAll().Count() / 10.0);
 
             int page = int.Parse(Page == null ? "1" : Page);
             //page number is needed in order to highlight the page
@@ -95,7 +90,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
         {
             try
             {
-                objBs.Delete(id);
+                objBs.categoryBs.Delete(id);
                 TempData["Msg"] = "Deleted Successfully";
                 return RedirectToAction("Index");
             }

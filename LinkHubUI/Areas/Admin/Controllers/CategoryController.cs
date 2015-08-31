@@ -8,14 +8,9 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.Admin.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : BaseAdminController
     {
-        private CategoryBs objBs;
-        public CategoryController()
-        {
-            objBs = new CategoryBs();
-        }
-
+   
         // GET: Admin/Category
         public ActionResult Index()
         {
@@ -29,7 +24,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    objBs.Insert(category);
+                    objBs.categoryBs.Insert(category);
                     TempData["Msg"] = "Created Successfully";
                     return RedirectToAction("Index");
                 }

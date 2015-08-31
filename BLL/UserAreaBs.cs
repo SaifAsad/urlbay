@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    class UserAreaBs : BaseBs
+    public class UserAreaBs : BaseBs
     {
     }
 }

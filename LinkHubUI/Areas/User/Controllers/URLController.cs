@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.User.Controllers
 {
+    [Authorize(Roles = "A, U")]
     public class URLController : BaseUserController
     {
         // GET: User/URL
@@ -23,6 +24,7 @@ namespace LinkHubUI.Areas.User.Controllers
             try
             {
                 myUrl.IsApproved = "P";
+                //return email address which will be used to find the user id
                 myUrl.UserId = objBs.userBs.GetAll().Where(x => x.UserEmail == User.Identity.Name).FirstOrDefault().UserId;
 
                 if (ModelState.IsValid)

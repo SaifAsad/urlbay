@@ -7,6 +7,7 @@ using BLL;
 
 namespace LinkHubUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "A")]
     public class ListCategoryController : BaseAdminController
     {
  

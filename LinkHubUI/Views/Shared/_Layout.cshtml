@@ -9,7 +9,7 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,10 +36,10 @@
                     }
 
                     @if (User.IsInRole("A") || User.IsInRole("U"))
-                    {
-                        <li><a href='#'>Welcome @User.Identity.Name/a></li>
-                        <li>@Html.ActionLink("SubmitURL", "Index", new { Controller = "SubmitURL", Area = "User" })</li>
+                    {                     
+                        <li>@Html.ActionLink("SubmitURL", "Index", new { Controller = "URL", Area = "User" })</li>
                         <li>@Html.ActionLink("SignOut", "SignOut", new { Controller = "Login", Area = "Security" })</li>
+                        <li><a href="#">Welcome @User.Identity.Name</a></li>
                     }
                     else
                     {

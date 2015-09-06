@@ -27,7 +27,9 @@ namespace DAL
         public void Insert(tbl_User user)
         {
             db.tbl_User.Add(user);
+            db.Configuration.ValidateOnSaveEnabled = false;
             Save();
+            db.Configuration.ValidateOnSaveEnabled = true;
         }
         public void Delete(int Id)
         {

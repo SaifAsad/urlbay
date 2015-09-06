@@ -22,17 +22,17 @@ namespace BLL
         {
             return objDB.GetById(id);
         }
-        public void Insert(tbl_User url)
+        public void Insert(tbl_User user)
         {
-            objDB.Insert(url);
+            objDB.Insert(user);
         }
         public void Delete(int id)
         {
             objDB.Delete(id);
         }
-        public void Update(tbl_User url)
+        public void Update(tbl_User user)
         {
-            objDB.Update(url);
+            objDB.Update(user);
         }
     }
 }

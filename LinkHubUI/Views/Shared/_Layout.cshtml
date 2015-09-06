@@ -9,6 +9,23 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '439484726251600',
+                xfbml: true,
+                version: 'v2.4'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("LinkHub", "Index", "Home", new { area = "Common" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("URLb@y", "Index", "Home", new { area = "Common" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -55,7 +72,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - LinkHub</p>
+            <p>&copy; @DateTime.Now.Year - URLb@y</p>
         </footer>
     </div>
 

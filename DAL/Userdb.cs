@@ -1,48 +1,47 @@
 ﻿using BOL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class Userdb
+    public class UserDb
     {
         private LinkHubDBEntities db;
 
-        public Userdb()
+        public UserDb()
         {
             db = new LinkHubDBEntities();
         }
-
-        public IEnumerable<tbl_User> GetAll()
+        public IEnumerable<tbl_User> GetALL()
         {
             return db.tbl_User.ToList();
         }
-
-        public tbl_User GetByID(int id)
+        public tbl_User GetByID(int Id)
         {
-            return db.tbl_User.Find(id);
+            return db.tbl_User.Find(Id);
         }
-
-        public void Insert(tbl_User url)
+        public void Insert(tbl_User user)
         {
-            db.tbl_User.Add(url);
+            db.tbl_User.Add(user);
             Save();
         }
-        public void Delete(int id)
+        public void Delete(int Id)
         {
-            tbl_User url = db.tbl_User.Find(id);
-            db.tbl_User.Remove(url);
+            tbl_User user = db.tbl_User.Find(Id);
+            db.tbl_User.Remove(user);
             Save();
         }
-
-        public void Update(tbl_User url)
+        public void Update(tbl_User user)
         {
-            db.Entry(url).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(user).State = EntityState.Modified;
+            db.Configuration.ValidateOnSaveEnabled = false;
+            Save();
+            db.Configuration.ValidateOnSaveEnabled = true;
         }
-
         public void Save()
         {
             db.SaveChanges();

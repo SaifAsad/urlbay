@@ -10,8 +10,8 @@
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<table class="table">
-    <tr>
+<table class="table table-bordered table-hover table-striped">
+    <tr class="info">
         <th>
             @Html.ActionLink("UrlTitle", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "Title", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
         </th>
@@ -67,19 +67,21 @@
     double TotalPage = ViewBag.TotalPages;
 }
 
-@{ 
-    for (int i = 1; i <= TotalPage; i++)
-    {
+<ul class="pagination">
+    @{
+        for (int i = 1; i <= TotalPage; i++)
+        {
         <!--these 2 statements do the same thing but the first one highlights the page number-->
-        if (i == ViewBag.Page)
-        {
-            <b>@Html.ActionLink(i.ToString() + "", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), Page = i })</b>
-        }
-        else
-        {
-            @Html.ActionLink(i.ToString() + "", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), Page = i })
-        }
+            if (i == ViewBag.Page)
+            {
+                <li class="active">@Html.ActionLink(i.ToString() + "", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), Page = i })</li>
+            }
+            else
+            {
+                <li>@Html.ActionLink(i.ToString() + "", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "Title" : ViewBag.SortBy), Page = i })</li>
+            }
 
+        }
     }
-}
 
+</ul>

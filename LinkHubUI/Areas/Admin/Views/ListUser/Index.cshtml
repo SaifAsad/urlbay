@@ -7,10 +7,10 @@
 
 <h2>Users</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+</p>*@
+<table class="table table-bordered table-striped table-hover">
     <tr>
         <th>
             @Html.ActionLink("UserEmail", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc")), SortBy = "UserEmail", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
@@ -46,6 +46,7 @@
     double TotalPage = @ViewBag.TotalPages;
 }
 
+<ul class="pagination">
 @for (int i = 1; i <= TotalPage; i++)
 {
 
@@ -61,3 +62,4 @@
     }
 
 }
+</ul>

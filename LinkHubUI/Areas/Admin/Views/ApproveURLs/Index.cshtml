@@ -6,6 +6,102 @@
 }
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 
+<script>
+
+    $(document).ready(function () {
+        console.log("jQuery executed");
+        BindSelectAll();
+
+        $(document).ajaxStart(function () {
+            console.log("ajax start");
+            $("#loading").show();
+        });
+
+        $(document).ajaxStop(function () {
+            console.log("ajax stop");
+            $("#loading").hide();
+        });
+
+        $("#Approve").click(function () {
+            checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
+
+            var numberOfCheckboxesSelected = $('input:checkbox:checked').length;
+            console.log("numberOfCheckboxesSelected" + numberOfCheckboxesSelected);
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ApproveOrRejectAll","ApproveURLs")",
+                traditional: true,
+                data: { Ids: checkedIds.toArray(), Status: "A", CurrentStatus: "@ViewBag.Status" },
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                console.log("approve success");
+                $("#data").html(data);
+                BindSelectAll();
+            }
+
+            function errorFunc() {
+                console.log("approve failed");
+                alert('error');
+            }
+
+        });
+
+        $("#Reject").click(function () {
+            checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
+
+            var numberOfCheckboxesSelected = $('input:checkbox:checked').length;
+            console.log("numberOfCheckboxesSelected" + numberOfCheckboxesSelected);
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ApproveOrRejectAll","ApproveURLs")",
+                traditional: true,
+                data: { Ids: checkedIds.toArray(), Status: "R", CurrentStatus: "@ViewBag.Status" },
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                console.log("reject success");
+                $("#data").html(data);
+                BindSelectAll();
+            }
+
+            function errorFunc() {
+                console.log("reject failed");
+                alert('error');
+            }
+
+        });
+    });
+
+
+    function BindSelectAll() {
+        console.log("select all");
+        $("#selectall").click(function (event) {  //on click
+            if (this.checked) { // check select status
+                $('.ckb').each(function () { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"
+                });
+            } else {
+                $('.ckb').each(function () { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"
+                });
+            }
+        });
+    }
+
+    function ConfirmApprove() {
+        return confirm('Are you sure you want to Approve?');
+    }
+    function ConfirmReject() {
+        return confirm('Are you sure you want to Reject?');
+    }
+</script>
 <h2>Manage URLs</h2>
 
 <div id="loading" class="modal">
@@ -50,54 +146,9 @@
     }
 </ul>
 
+<div id="data">
+    @Html.Partial("partialView_ApproveURLs", Model)
+</div>
 
-<table class="table" >
-        <tr class="info">
-            <th>
-                @Html.DisplayNameFor(model => model.UrlTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Url)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UrlDesc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsApproved)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbl_Category.CategoryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tbl_User.UserEmail)
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.UrlTitle)
-                </td>
-                <td>
-                    <a target="_blank" href=@item.Url>@item.Url</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UrlDesc)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsApproved)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbl_Category.CategoryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbl_User.UserEmail)
-                </td>
-            </tr>
-        }
-
-    </table>
-<input type="button" id="Approve" value="Approve" /> |
-<input type="button" id="Reject" value="Reject" />
+<input type="button" id="Approve" value="Approve" class="btn btn-primary" /> |
+<input type="button" id="Reject" value="Reject" class="btn btn-primary" />

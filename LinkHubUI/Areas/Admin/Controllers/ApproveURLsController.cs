@@ -42,6 +42,23 @@ namespace LinkHubUI.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
+        [HttpPost]
+        public ActionResult ApproveOrRejectAll(List<int> Ids, string status, string currentStatus)
+        {
+            try
+            {
+                objBs.ApproveOrReject(Ids, status);
+                TempData["Msg"] = "Operation Successfull";
+                var urls = objBs.urlBs.GetAll().Where(x => x.IsApproved == currentStatus).ToList();
+                return PartialView("partialView_ApproveURLs", urls);
+            }
+            catch (Exception e1)
+            {
+                TempData["Msg"] = "Operation Failed" + e1.Message;
+                var urls = objBs.urlBs.GetAll().Where(x => x.IsApproved == currentStatus).ToList();
+                return PartialView("partialView_ApproveURLs", urls);
+            }
+        }
         public ActionResult Reject(int id)
         {
             try

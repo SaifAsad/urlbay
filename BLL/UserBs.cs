@@ -20,7 +20,7 @@ namespace BLL
 
         public tbl_User GetById(int id)
         {
-            return objDB.GetByID(id);
+            return objDB.GetById(id);
         }
         public void Insert(tbl_User url)
         {

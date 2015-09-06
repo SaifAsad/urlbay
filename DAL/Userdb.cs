@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class UserDb
+    public class Userdb
     {
         private LinkHubDBEntities db;
 
-        public UserDb()
+        public Userdb()
         {
             db = new LinkHubDBEntities();
         }
-        public IEnumerable<tbl_User> GetALL()
+        public IEnumerable<tbl_User> GetAll()
         {
             return db.tbl_User.ToList();
         }
-        public tbl_User GetByID(int Id)
+        public tbl_User GetById(int Id)
         {
             return db.tbl_User.Find(Id);
         }

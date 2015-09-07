@@ -23,17 +23,25 @@
         });
 
         $("#Approve").click(function () {
+            //.filter ()
+            //.map ()
             checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
 
             var numberOfCheckboxesSelected = $('input:checkbox:checked').length;
             console.log("numberOfCheckboxesSelected" + numberOfCheckboxesSelected);
 
             $.ajax({
+                //type: A string defining the HTTP method to use for the request (GET or POST). The default value is GET.
                 type: "POST",
+                //url: A string containing the URL to which the request is sent.
                 url: "@Url.Action("ApproveOrRejectAll","ApproveURLs")",
+                //this will cancel the traditional way that asp uses to deal with arrays
                 traditional: true,
+                //data: A map or string that is sent to the server with the request.
                 data: { Ids: checkedIds.toArray(), Status: "A", CurrentStatus: "@ViewBag.Status" },
+                //success A callback function that is executed if the request succeeds.
                 success: successFunc,
+                //error: A callback function that is executed if the request fails.
                 error: errorFunc
             });
 

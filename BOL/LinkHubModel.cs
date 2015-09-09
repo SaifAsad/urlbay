@@ -7,3 +7,52 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
+public partial class tbl_Category
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public tbl_Category()
+    {
+        this.tbl_Url = new HashSet<tbl_Url>();
+    }
+
+    public int CategoryId { get; set; }
+    public string CategoryName { get; set; }
+    public string CategoryDesc { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<tbl_Url> tbl_Url { get; set; }
+}
+
+public partial class tbl_Url
+{
+    public int UrlId { get; set; }
+    public string UrlTitle { get; set; }
+    public string Url { get; set; }
+    public string UrlDesc { get; set; }
+    public Nullable<int> CategoryId { get; set; }
+    public Nullable<int> UserId { get; set; }
+    public string IsApproved { get; set; }
+
+    public virtual tbl_Category tbl_Category { get; set; }
+    public virtual tbl_User tbl_User { get; set; }
+}
+
+public partial class tbl_User
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public tbl_User()
+    {
+        this.tbl_Url = new HashSet<tbl_Url>();
+    }
+
+    public int UserId { get; set; }
+    public string UserEmail { get; set; }
+    public string Password { get; set; }
+    public string Role { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<tbl_Url> tbl_Url { get; set; }
+}

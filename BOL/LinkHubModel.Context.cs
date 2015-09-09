@@ -7,26 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BOL
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
+public partial class LinkHubDBEntities : DbContext
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
-    public partial class LinkHubDBEntities : DbContext
+    public LinkHubDBEntities()
+        : base("name=LinkHubDBEntities")
     {
-        public LinkHubDBEntities()
-            : base("name=LinkHubDBEntities")
-        {
-        }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
-        public virtual DbSet<tbl_Category> tbl_Category { get; set; }
-        public virtual DbSet<tbl_Url> tbl_Url { get; set; }
-        public virtual DbSet<tbl_User> tbl_User { get; set; }
     }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        throw new UnintentionalCodeFirstException();
+    }
+
+    public virtual DbSet<tbl_Category> tbl_Category { get; set; }
+    public virtual DbSet<tbl_Url> tbl_Url { get; set; }
+    public virtual DbSet<tbl_User> tbl_User { get; set; }
 }
